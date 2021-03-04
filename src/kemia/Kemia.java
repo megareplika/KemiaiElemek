@@ -72,7 +72,7 @@ public class Kemia {
     }
 
     private void kiir(int feladatszam, String szoveg) {
-        System.out.println(feladatszam + ".feladat: " + szoveg);
+        System.out.print("\n"+feladatszam + ".feladat: " + szoveg);
     }
 
     public void feladat4() {
@@ -82,14 +82,28 @@ public class Kemia {
                 db++;
             }
         }
-        kiir(4, "Felfedezések száma az ókorban: "+db);
+        kiir(4, "Felfedezések száma az ókorban: " + db);
     }
 
     public void feladat7() {
-
+        int maxEvKül = 0;
+        for (int i = 0; i < elemek.size() - 1; i++) {
+            if (!(elemek.get(i).getEv().toLowerCase().equals("ókor") && elemek.get(i + 1).getEv().toLowerCase().equals("ókor"))) {
+                int elsoEv = Integer.parseInt(elemek.get(i).getEv());
+                int masikEv = Integer.parseInt(elemek.get(i + 1).getEv());
+                int kül = masikEv - elsoEv;
+                if (maxEvKül < kül) {
+                    maxEvKül = kül;
+                }
+            }
+        }
+        String szov = maxEvKül+"év volt a leghoszabb időszak két elem felfedezése között.";
+        kiir(7, szov);
     }
 
     public static void main(String[] args) {
-        new Kemia();
+        Kemia kemia = new Kemia();
+        kemia.feladat4();
+        kemia.feladat7();
     }
 }
