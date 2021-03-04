@@ -74,6 +74,9 @@ public class Kemia {
     private void kiir(int feladatszam, String szoveg) {
         System.out.print("\n"+feladatszam + ".feladat: " + szoveg);
     }
+    public void feladat3(){
+        kiir(3,"Elemek száma:"+elemek.size());
+    }
 
     public void feladat4() {
         int db = 0;
@@ -103,6 +106,7 @@ public class Kemia {
 
     public static void main(String[] args) {
         Kemia kemia = new Kemia();
+        kemia.feladat3();
         kemia.feladat4();
         kemia.feladat7();
     }
