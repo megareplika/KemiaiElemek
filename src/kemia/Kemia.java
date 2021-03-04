@@ -44,6 +44,7 @@ public class Kemia {
                     String felfedezok = s[4];
                     tomb.add(new Elem(ev, név, jel, rendszam, felfedezok));
                 }
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
