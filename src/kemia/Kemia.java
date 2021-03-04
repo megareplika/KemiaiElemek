@@ -19,15 +19,35 @@ class Elem {
         this.rendszam = rendszam;
         this.felfedezo = felfedezo;
     }
+
+    public String getEv() {
+        return ev;
+    }
+
+    public String getNev() {
+        return nev;
+    }
+
+    public String getVegyjel() {
+        return vegyjel;
+    }
+
+    public int getRendszam() {
+        return rendszam;
+    }
+
+    public String getFelfedezo() {
+        return felfedezo;
+    }
 }
 
 public class Kemia {
 
     private final String file = "felfedezesek.csv";
-    private ArrayList<Elem> tomb;
+    private ArrayList<Elem> elemek;
 
     public Kemia() {
-        this.tomb = new ArrayList<>();
+        this.elemek = new ArrayList<>();
     }
 
     private void beolvas() {
@@ -42,17 +62,34 @@ public class Kemia {
                     String jel = s[2];
                     int rendszam = Integer.parseInt(s[3]);
                     String felfedezok = s[4];
-                    tomb.add(new Elem(ev, név, jel, rendszam, felfedezok));
+                    elemek.add(new Elem(ev, név, jel, rendszam, felfedezok));
                 }
                 i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void kiir(int feladatszam, String szoveg) {
+        System.out.println(feladatszam + ".feladat: " + szoveg);
+    }
+
+    public void feladat4() {
+        int db = 0;
+        for (Elem elem : elemek) {
+            if (elem.getEv().toLowerCase().equals("ókor")) {
+                db++;
+            }
+        }
+        kiir(4, "Felfedezések száma az ókorban: "+db);
+    }
+
+    public void feladat7() {
 
     }
 
     public static void main(String[] args) {
-
+        new Kemia();
     }
 }
