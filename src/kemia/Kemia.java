@@ -108,7 +108,7 @@ public class Kemia {
                 }
             }
         }
-        String szov = maxEvKül + "év volt a leghoszabb időszak két elem felfedezése között.";
+        String szov = maxEvKül + " év volt a leghoszabb időszak két elem felfedezése között.";
         kiir(7, szov);
     }
 
