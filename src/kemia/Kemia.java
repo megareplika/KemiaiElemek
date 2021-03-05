@@ -39,6 +39,12 @@ class Elem {
     public String getFelfedezo() {
         return felfedezo;
     }
+
+    @Override
+    public String toString() {
+        return "ev=" + ev + ", nev=" + nev + ", vegyjel=" + vegyjel + ", rendszam=" + rendszam + ", felfedezo=" + felfedezo;
+    }
+
 }
 
 public class Kemia {
@@ -48,12 +54,13 @@ public class Kemia {
 
     public Kemia() {
         this.elemek = new ArrayList<>();
+        beolvas();
     }
 
     private void beolvas() {
         try {
             List<String> sorok = Files.readAllLines(Paths.get(file));
-            int i = 0;
+            int i = 1;
             while (i < sorok.size()) {
                 String[] s = sorok.get(i).split(";");
                 for (int j = 0; j < s.length; j++) {
@@ -72,10 +79,11 @@ public class Kemia {
     }
 
     private void kiir(int feladatszam, String szoveg) {
-        System.out.print("\n"+feladatszam + ".feladat: " + szoveg);
+        System.out.print("\n" + feladatszam + ".feladat: " + szoveg);
     }
-    public void feladat3(){
-        kiir(3,"Elemek száma:"+elemek.size());
+
+    public void feladat3() {
+        kiir(3, "Elemek száma: " + elemek.size());
     }
 
     public void feladat4() {
@@ -91,7 +99,7 @@ public class Kemia {
     public void feladat7() {
         int maxEvKül = 0;
         for (int i = 0; i < elemek.size() - 1; i++) {
-            if (!(elemek.get(i).getEv().toLowerCase().equals("ókor") && elemek.get(i + 1).getEv().toLowerCase().equals("ókor"))) {
+            if (!(elemek.get(i).getEv().toLowerCase().equals("ókor") || elemek.get(i + 1).getEv().toLowerCase().equals("ókor"))) {
                 int elsoEv = Integer.parseInt(elemek.get(i).getEv());
                 int masikEv = Integer.parseInt(elemek.get(i + 1).getEv());
                 int kül = masikEv - elsoEv;
@@ -100,7 +108,7 @@ public class Kemia {
                 }
             }
         }
-        String szov = maxEvKül+"év volt a leghoszabb időszak két elem felfedezése között.";
+        String szov = maxEvKül + "év volt a leghoszabb időszak két elem felfedezése között.";
         kiir(7, szov);
     }
 
@@ -109,5 +117,6 @@ public class Kemia {
         kemia.feladat3();
         kemia.feladat4();
         kemia.feladat7();
+        System.out.println("");
     }
 }
