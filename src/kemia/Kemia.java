@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 class Elem {
@@ -149,6 +151,27 @@ public class Kemia {
         String szov = maxEvKül + " év volt a leghoszabb időszak két elem felfedezése között.";
         kiir(7, szov);
     }
+     public void feladat8() {
+        System.out.println("\n 8.feladat: ");
+        HashMap<String, Integer> statisztika= new HashMap<>();
+        for (Elem elem : elemek) {
+            String kulcs = elem.getEv();
+            if (!statisztika.containsKey(kulcs)) {
+                statisztika.put(kulcs,1);
+            }else{
+            int ertek=statisztika.get(kulcs);
+            statisztika.put(kulcs, ++ertek);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : statisztika.entrySet()) {
+            String key = entry.getKey();
+            Integer value=entry.getValue();
+            System.out.printf("\t%s: %d db\n", key, value);
+        }
+        
+        
+        
+    }
 
     public static void main(String[] args) {
         Kemia kemia = new Kemia();
@@ -157,7 +180,7 @@ public class Kemia {
         kemia.feladat5();
 
         kemia.feladat7();
-      
+        kemia.feladat8();
 
         System.out.println("");
     }
