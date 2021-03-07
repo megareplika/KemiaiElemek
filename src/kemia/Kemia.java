@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 class Elem {
 
@@ -95,6 +96,43 @@ public class Kemia {
         }
         kiir(4, "Felfedezések száma az ókorban: " + db);
     }
+     public void feladat5() {
+        Scanner sc = new Scanner(System.in);
+        String vegyjel = "";
+        boolean karakter = false;
+        do {
+            kiir(5, "Kérek egy vegyjelet:");
+            vegyjel = sc.nextLine();
+            //System.out.println(vegyjel.length());
+            if (vegyjel.length() <= 2) {
+                karakter = true;
+//                if (vegyjel.contains("[A-Z]") && vegyjel.contains("[a-z]")) {
+//                   
+//                }else{
+//                karakter=false;
+//                }
+            } else {
+                karakter = false;
+            }
+        } while (!karakter);
+        feladat6(vegyjel);
+    }
+       public void feladat6(String vegyjel) {
+        int N = elemek.size();
+        int i = 0;
+        while (i < N && !(elemek.get(i).getVegyjel().toLowerCase().equals(vegyjel.toLowerCase()))) {
+            i++;
+        }
+        System.out.println(i + "," + N);
+
+        if (i < N) {
+            kiir(6, elemek.get(i).toString());
+
+        } else {
+            kiir(6, "Keresés:");
+            System.out.println("\t Nincs ilyen elem az adatforrásban!");
+        }
+    }
 
     public void feladat7() {
         int maxEvKül = 0;
@@ -116,7 +154,11 @@ public class Kemia {
         Kemia kemia = new Kemia();
         kemia.feladat3();
         kemia.feladat4();
+        kemia.feladat5();
+
         kemia.feladat7();
+      
+
         System.out.println("");
     }
 }
